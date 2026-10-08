@@ -1,7 +1,8 @@
-self.addEventListener('install', (e) => {
-  console.log('Service Worker yüklendi');
-});
-
-self.addEventListener('fetch', (e) => {
-  // Şimdilik istekleri direkt internetten veya önbellekten alır
-});
+// Örnek başlangıç yolu tanımı
+const PRECACHE = 'yks-asistan-v1';
+const PRECACHE_URLS = [
+  './',
+  './index.html',
+  './manifest.json'
+  // Diğer dosyaların
+];
