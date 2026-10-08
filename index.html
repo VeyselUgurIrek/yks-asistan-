@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YKS Asistanı</title>
+
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#6c5ce7">
 
@@ -32,7 +33,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body {
@@ -98,12 +100,23 @@
             transform: rotate(-90deg);
             transform-origin: 50% 50%;
         }
+
+        select option {
+            background: #131c31;
+            color: white;
+        }
+
+        .light select option {
+            background: white;
+            color: #1e293b;
+        }
     </style>
 </head>
 
 <body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
 
-    <!-- Top Navigation Bar -->
+    <!-- ================= HEADER ================= -->
+
     <header class="sticky top-0 z-50 glass-panel border-b border-slate-200/20 dark:border-slate-800/60 px-4 lg:px-8 py-3.5 flex items-center justify-between">
 
         <div class="flex items-center space-x-3">
@@ -122,30 +135,32 @@
             </div>
         </div>
 
-        <!-- Center Tabs -->
+        <!-- Desktop Navigation -->
+
         <nav class="hidden md:flex items-center space-x-1 bg-slate-200/50 dark:bg-slate-800/50 p-1.5 rounded-2xl border border-slate-300/40 dark:border-slate-700/50">
 
             <button onclick="switchTab('dashboard')" id="nav-dashboard"
-                class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 bg-purple-600 text-white shadow-md shadow-purple-500/20">
+                    class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 bg-purple-600 text-white shadow-md shadow-purple-500/20">
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Ana Sayfa</span>
             </button>
 
             <button onclick="switchTab('subjects')" id="nav-subjects"
-                class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
                 <i class="fa-solid fa-book-open"></i>
                 <span>Derslerim</span>
             </button>
 
             <button onclick="switchTab('schedules')" id="nav-schedules"
-                class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
                 <i class="fa-solid fa-calendar-days"></i>
                 <span>Programlarım</span>
             </button>
 
         </nav>
 
-        <!-- Right Side -->
+        <!-- Countdown -->
+
         <div class="flex items-center space-x-3">
 
             <div class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-purple-500/10 dark:bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-300 text-xs font-medium">
@@ -154,40 +169,46 @@
             </div>
 
             <button onclick="toggleTheme()"
-                class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-yellow-400 hover:scale-105 active:scale-95 transition-transform shadow-sm">
+                    class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-yellow-400 hover:scale-105 active:scale-95 transition-transform shadow-sm">
+
                 <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+
             </button>
 
         </div>
+
     </header>
 
-    <!-- Mobile Navigation -->
+    <!-- ================= MOBILE NAV ================= -->
+
     <div class="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel border-t border-slate-200/20 dark:border-slate-800/80 px-6 py-2 flex justify-around items-center bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-lg">
 
         <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard"
-            class="flex flex-col items-center py-1 text-purple-600 dark:text-purple-400">
+                class="flex flex-col items-center py-1 text-purple-600 dark:text-purple-400">
             <i class="fa-solid fa-chart-pie text-lg mb-0.5"></i>
             <span class="text-[10px] font-medium">Özet</span>
         </button>
 
         <button onclick="switchTab('subjects')" id="mobile-nav-subjects"
-            class="flex flex-col items-center py-1 text-slate-500 dark:text-slate-400">
+                class="flex flex-col items-center py-1 text-slate-500 dark:text-slate-400">
             <i class="fa-solid fa-book-open text-lg mb-0.5"></i>
             <span class="text-[10px] font-medium">Dersler</span>
         </button>
 
         <button onclick="switchTab('schedules')" id="mobile-nav-schedules"
-            class="flex flex-col items-center py-1 text-slate-500 dark:text-slate-400">
+                class="flex flex-col items-center py-1 text-slate-500 dark:text-slate-400">
             <i class="fa-solid fa-calendar-days text-lg mb-0.5"></i>
             <span class="text-[10px] font-medium">Program</span>
         </button>
 
     </div>
 
-    <!-- Main -->
+    <!-- ================= MAIN ================= -->
+
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 pb-24 md:pb-8">
 
         <!-- ================= DASHBOARD ================= -->
+
         <section id="view-dashboard" class="space-y-8">
 
             <div class="glass-panel rounded-3xl p-6 lg:p-10 relative overflow-hidden glow-effect">
@@ -209,40 +230,52 @@
                         </h2>
 
                         <p class="text-slate-600 dark:text-slate-300 text-sm lg:text-base leading-relaxed">
-                            YKS tamamlama yüzdesi, derslerinizin ortalamasından; ders yüzdeleri ise konuların ortalamasından anlık hesaplanır.
+                            YKS tamamlama yüzdesi derslerinizin ortalamasından;
+                            ders yüzdeleri konuların ortalamasından,
+                            konu yüzdeleri ise görevlerin tamamlanma oranından hesaplanır.
                         </p>
 
                         <div class="flex flex-wrap gap-3 pt-2">
 
                             <button onclick="switchTab('subjects')"
-                                class="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-purple-500/30 transition-all flex items-center space-x-2">
+                                    class="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-purple-500/30 transition-all flex items-center space-x-2">
+
                                 <i class="fa-solid fa-book"></i>
                                 <span>Derslere Git</span>
+
                             </button>
 
                             <button onclick="switchTab('schedules')"
-                                class="px-6 py-3 rounded-2xl glass-panel hover:bg-slate-200/50 dark:hover:bg-slate-800/80 font-semibold text-sm transition-all flex items-center space-x-2">
+                                    class="px-6 py-3 rounded-2xl glass-panel hover:bg-slate-200/50 dark:hover:bg-slate-800/80 font-semibold text-sm transition-all flex items-center space-x-2">
+
                                 <i class="fa-solid fa-calendar-check text-cyan-400"></i>
                                 <span>Programı Görüntüle</span>
+
                             </button>
 
                         </div>
+
                     </div>
 
-                    <!-- Progress Ring -->
+                    <!-- Progress -->
+
                     <div class="lg:col-span-5 flex flex-col items-center justify-center">
 
                         <div class="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center">
 
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 160 160">
 
-                                <circle cx="80" cy="80" r="70"
+                                <circle
+                                    cx="80"
+                                    cy="80"
+                                    r="70"
                                     class="stroke-slate-200 dark:stroke-slate-800"
                                     stroke-width="12"
                                     fill="none">
                                 </circle>
 
-                                <circle id="total-progress-ring"
+                                <circle
+                                    id="total-progress-ring"
                                     cx="80"
                                     cy="80"
                                     r="70"
@@ -259,7 +292,7 @@
                             <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
 
                                 <span id="total-percentage-text"
-                                    class="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-purple-600 to-cyan-400 bg-clip-text text-transparent">
+                                      class="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-purple-600 to-cyan-400 bg-clip-text text-transparent">
                                     0%
                                 </span>
 
@@ -268,12 +301,17 @@
                                 </span>
 
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Quick Stats -->
+            <!-- Stats -->
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 <div class="glass-panel rounded-2xl p-5 flex items-center space-x-4 border border-slate-200/30 dark:border-slate-800/80">
@@ -287,7 +325,8 @@
                             Toplam Ders
                         </p>
 
-                        <h4 id="stat-total-subjects" class="text-2xl font-bold mt-0.5">
+                        <h4 id="stat-total-subjects"
+                            class="text-2xl font-bold mt-0.5">
                             0
                         </h4>
                     </div>
@@ -305,7 +344,8 @@
                             Toplam Konu
                         </p>
 
-                        <h4 id="stat-total-topics" class="text-2xl font-bold mt-0.5">
+                        <h4 id="stat-total-topics"
+                            class="text-2xl font-bold mt-0.5">
                             0
                         </h4>
                     </div>
@@ -323,14 +363,16 @@
                             Tamamlanan Görev
                         </p>
 
-                        <h4 id="stat-completed-tasks" class="text-2xl font-bold mt-0.5">
+                        <h4 id="stat-completed-tasks"
+                            class="text-2xl font-bold mt-0.5">
                             0 / 0
                         </h4>
-
                     </div>
+
                 </div>
 
-                <!-- DAILY STREAK -->
+                <!-- Daily Streak -->
+
                 <div class="glass-panel rounded-2xl p-5 flex items-center space-x-4 border border-slate-200/30 dark:border-slate-800/80">
 
                     <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400 text-xl font-bold">
@@ -342,8 +384,9 @@
                             Günlük Seri
                         </p>
 
-                        <h4 id="stat-daily-streak" class="text-2xl font-bold mt-0.5">
-                            0 Gün
+                        <h4 id="stat-daily-streak"
+                            class="text-2xl font-bold mt-0.5">
+                            0 gün
                         </h4>
                     </div>
 
@@ -351,7 +394,8 @@
 
             </div>
 
-            <!-- Subject Progress -->
+            <!-- Subject Preview -->
+
             <div class="space-y-4">
 
                 <div class="flex items-center justify-between">
@@ -361,14 +405,14 @@
                     </h3>
 
                     <button onclick="switchTab('subjects')"
-                        class="text-sm font-semibold text-purple-600 dark:text-purple-400 hover:underline">
+                            class="text-sm font-semibold text-purple-600 dark:text-purple-400 hover:underline">
                         Tümünü Gör →
                     </button>
 
                 </div>
 
                 <div id="dashboard-subjects-grid"
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 </div>
 
             </div>
@@ -376,6 +420,7 @@
         </section>
 
         <!-- ================= SUBJECTS ================= -->
+
         <section id="view-subjects" class="hidden space-y-6">
 
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -390,39 +435,39 @@
                     </p>
                 </div>
 
-                <div class="flex items-center space-x-3 w-full sm:w-auto">
-
-                    <button onclick="openAddSubjectModal()"
+                <button onclick="openAddSubjectModal()"
                         class="px-5 py-2.5 rounded-2xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-purple-500/20 hover:scale-105 transition-transform flex items-center justify-center space-x-2 w-full sm:w-auto">
 
-                        <i class="fa-solid fa-plus"></i>
-                        <span>Ders Ekle</span>
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Ders Ekle</span>
 
-                    </button>
+                </button>
 
-                </div>
             </div>
 
             <div id="subjects-grid"
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             </div>
 
         </section>
 
         <!-- ================= TOPICS ================= -->
+
         <section id="view-topics" class="hidden space-y-6">
 
             <div class="flex items-center space-x-4">
 
                 <button onclick="switchTab('subjects')"
-                    class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:scale-105 transition-transform">
+                        class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:scale-105 transition-transform">
+
                     <i class="fa-solid fa-arrow-left"></i>
+
                 </button>
 
                 <div>
 
                     <div id="topics-subject-badge"
-                        class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1">
+                         class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1">
                         Ders
                     </div>
 
@@ -440,11 +485,11 @@
                 <div class="flex justify-between items-center text-sm">
 
                     <span class="font-semibold text-slate-600 dark:text-slate-300">
-                        Ders Tamamlama Oranı (Konuların Ortalaması)
+                        Ders Tamamlama Oranı
                     </span>
 
                     <span id="topics-course-percentage-text"
-                        class="font-bold text-purple-600 dark:text-cyan-400">
+                          class="font-bold text-purple-600 dark:text-cyan-400">
                         0%
                     </span>
 
@@ -453,8 +498,8 @@
                 <div class="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
 
                     <div id="topics-course-progress-bar"
-                        class="h-full bg-gradient-to-r from-purple-600 to-cyan-400 transition-all duration-500"
-                        style="width: 0%">
+                         class="h-full bg-gradient-to-r from-purple-600 to-cyan-400 transition-all duration-500"
+                         style="width: 0%">
                     </div>
 
                 </div>
@@ -471,13 +516,14 @@
 
                     <div class="flex items-center space-x-2 w-full sm:w-auto">
 
-                        <input type="text"
+                        <input
+                            type="text"
                             id="new-topic-input"
-                            placeholder="Yeni konu adı (Örn: Üslü Sayılar)..."
+                            placeholder="Yeni konu adı..."
                             class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm focus:outline-none focus:border-purple-500 w-full sm:w-64">
 
                         <button onclick="addNewTopic()"
-                            class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all whitespace-nowrap">
+                                class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all whitespace-nowrap">
                             + Konu Ekle
                         </button>
 
@@ -486,7 +532,7 @@
                 </div>
 
                 <div id="topics-list"
-                    class="space-y-3 max-h-[500px] overflow-y-auto custom-scrollbar pr-1">
+                     class="space-y-3 max-h-[500px] overflow-y-auto custom-scrollbar pr-1">
                 </div>
 
             </div>
@@ -494,19 +540,22 @@
         </section>
 
         <!-- ================= TASKS ================= -->
+
         <section id="view-tasks" class="hidden space-y-6">
 
             <div class="flex items-center space-x-4">
 
                 <button onclick="openTopicsView(currentActiveSubjectId)"
-                    class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:scale-105 transition-transform">
+                        class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:scale-105 transition-transform">
+
                     <i class="fa-solid fa-arrow-left"></i>
+
                 </button>
 
                 <div>
 
                     <div id="tasks-topic-badge"
-                        class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1">
+                         class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold mb-1">
                         Konu
                     </div>
 
@@ -524,11 +573,11 @@
                 <div class="flex justify-between items-center text-sm">
 
                     <span class="font-semibold text-slate-600 dark:text-slate-300">
-                        Konu Tamamlama Oranı (Görevlerin Oranı)
+                        Konu Tamamlama Oranı
                     </span>
 
                     <span id="tasks-topic-percentage-text"
-                        class="font-bold text-purple-600 dark:text-cyan-400">
+                          class="font-bold text-purple-600 dark:text-cyan-400">
                         0%
                     </span>
 
@@ -537,8 +586,8 @@
                 <div class="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
 
                     <div id="tasks-topic-progress-bar"
-                        class="h-full bg-gradient-to-r from-purple-600 to-cyan-400 transition-all duration-500"
-                        style="width: 0%">
+                         class="h-full bg-gradient-to-r from-purple-600 to-cyan-400 transition-all duration-500"
+                         style="width: 0%">
                     </div>
 
                 </div>
@@ -555,13 +604,14 @@
 
                     <div class="flex items-center space-x-2 w-full sm:w-auto">
 
-                        <input type="text"
+                        <input
+                            type="text"
                             id="new-task-input"
                             placeholder="Yeni görev / soru çözümü..."
                             class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm focus:outline-none focus:border-purple-500 w-full sm:w-64">
 
                         <button onclick="addNewTaskToTopic()"
-                            class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all whitespace-nowrap">
+                                class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all whitespace-nowrap">
                             Görev Ekle
                         </button>
 
@@ -570,7 +620,7 @@
                 </div>
 
                 <div id="tasks-list"
-                    class="space-y-2.5 max-h-[500px] overflow-y-auto custom-scrollbar pr-1">
+                     class="space-y-2.5 max-h-[500px] overflow-y-auto custom-scrollbar pr-1">
                 </div>
 
             </div>
@@ -578,31 +628,34 @@
         </section>
 
         <!-- ================= SCHEDULES ================= -->
+
         <section id="view-schedules" class="hidden space-y-6">
 
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
                 <div>
+
                     <h2 class="text-2xl lg:text-3xl font-extrabold tracking-tight">
                         Çalışma Programları
                     </h2>
 
                     <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                        Günlük hedeflerini ve haftalık planını organize et.
+                        Günlük programını görüntüle, haftalık planını oluştur.
                     </p>
+
                 </div>
 
                 <div class="flex items-center space-x-2 bg-slate-200/50 dark:bg-slate-800/50 p-1.5 rounded-2xl border border-slate-300/40 dark:border-slate-700/50">
 
                     <button onclick="switchScheduleSubTab('daily')"
-                        id="subnav-daily"
-                        class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-purple-600 text-white shadow-md">
+                            id="subnav-daily"
+                            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-purple-600 text-white shadow-md">
                         Günlük Program
                     </button>
 
                     <button onclick="switchScheduleSubTab('weekly')"
-                        id="subnav-weekly"
-                        class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-white">
+                            id="subnav-weekly"
+                            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400">
                         Haftalık Plan
                     </button>
 
@@ -610,10 +663,11 @@
 
             </div>
 
-            <!-- DAILY -->
+            <!-- ================= DAILY ================= -->
+
             <div id="subview-daily" class="space-y-6">
 
-                <div class="glass-panel rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="glass-panel rounded-2xl p-6">
 
                     <div class="flex items-center space-x-3">
 
@@ -623,37 +677,58 @@
 
                         <div>
 
-                            <h3 id="current-date-title" class="text-lg font-bold">
+                            <h3 id="current-date-title"
+                                class="text-lg font-bold">
                                 Bugünün Programı
                             </h3>
 
-                            <p class="text-xs text-slate-500 dark:text-slate-400">
-                                Günlük görevlerini tamamla ve rutini bozma.
+                            <p id="current-date-description"
+                               class="text-xs text-slate-500 dark:text-slate-400">
+                                Bugünün haftalık planını burada görebilirsin.
                             </p>
 
                         </div>
 
                     </div>
 
+                </div>
+
+                <div id="daily-tasks-list"
+                     class="space-y-3">
+                </div>
+
+            </div>
+
+            <!-- ================= WEEKLY ================= -->
+
+            <div id="subview-weekly" class="hidden space-y-6">
+
+                <div class="glass-panel rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+
+                    <div>
+
+                        <h3 class="text-lg font-bold">
+                            Haftalık Plan
+                        </h3>
+
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            Haftanın hangi günü, hangi saatte ne yapacağını buradan planla.
+                        </p>
+
+                    </div>
+
                     <button onclick="openAddScheduleModal()"
-                        class="px-5 py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all flex items-center space-x-2 w-full sm:w-auto justify-center">
+                            class="px-5 py-2.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all flex items-center space-x-2">
 
                         <i class="fa-solid fa-plus"></i>
-                        <span>Program Ekle</span>
+                        <span>Haftalık Görev Ekle</span>
 
                     </button>
 
                 </div>
 
-                <div id="daily-tasks-list" class="space-y-3"></div>
-
-            </div>
-
-            <!-- WEEKLY -->
-            <div id="subview-weekly" class="hidden space-y-6">
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-                    id="weekly-grid">
+                     id="weekly-grid">
                 </div>
 
             </div>
@@ -662,9 +737,10 @@
 
     </main>
 
-    <!-- ADD SUBJECT MODAL -->
+    <!-- ================= ADD SUBJECT MODAL ================= -->
+
     <div id="modal-add-subject"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden px-4">
+         class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden px-4">
 
         <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-6 border border-slate-700/80 shadow-2xl">
 
@@ -675,8 +751,10 @@
                 </h3>
 
                 <button onclick="closeAddSubjectModal()"
-                    class="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white">
+                        class="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white">
+
                     <i class="fa-solid fa-xmark"></i>
+
                 </button>
 
             </div>
@@ -690,9 +768,9 @@
                     </label>
 
                     <input type="text"
-                        id="modal-subject-name"
-                        placeholder="Örn: TYT Matematik, Fizik..."
-                        class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+                           id="modal-subject-name"
+                           placeholder="Örn: TYT Matematik, Fizik..."
+                           class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
 
                 </div>
 
@@ -703,7 +781,7 @@
                     </label>
 
                     <select id="modal-subject-category"
-                        class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+                            class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
 
                         <option value="TYT">TYT</option>
                         <option value="AYT-SAY">AYT Sayısal</option>
@@ -723,34 +801,29 @@
                     <div class="flex space-x-3">
 
                         <button type="button"
-                            onclick="selectSubjectColor('purple')"
-                            class="w-8 h-8 rounded-full bg-purple-600 ring-2 ring-white ring-offset-2 ring-offset-slate-900 color-btn"
-                            data-color="purple">
-                        </button>
+                                onclick="selectSubjectColor('purple')"
+                                class="w-8 h-8 rounded-full bg-purple-600 ring-2 ring-white ring-offset-2 ring-offset-slate-900 color-btn"
+                                data-color="purple"></button>
 
                         <button type="button"
-                            onclick="selectSubjectColor('cyan')"
-                            class="w-8 h-8 rounded-full bg-cyan-500 color-btn"
-                            data-color="cyan">
-                        </button>
+                                onclick="selectSubjectColor('cyan')"
+                                class="w-8 h-8 rounded-full bg-cyan-500 color-btn"
+                                data-color="cyan"></button>
 
                         <button type="button"
-                            onclick="selectSubjectColor('pink')"
-                            class="w-8 h-8 rounded-full bg-pink-500 color-btn"
-                            data-color="pink">
-                        </button>
+                                onclick="selectSubjectColor('pink')"
+                                class="w-8 h-8 rounded-full bg-pink-500 color-btn"
+                                data-color="pink"></button>
 
                         <button type="button"
-                            onclick="selectSubjectColor('amber')"
-                            class="w-8 h-8 rounded-full bg-amber-500 color-btn"
-                            data-color="amber">
-                        </button>
+                                onclick="selectSubjectColor('amber')"
+                                class="w-8 h-8 rounded-full bg-amber-500 color-btn"
+                                data-color="amber"></button>
 
                         <button type="button"
-                            onclick="selectSubjectColor('emerald')"
-                            class="w-8 h-8 rounded-full bg-emerald-500 color-btn"
-                            data-color="emerald">
-                        </button>
+                                onclick="selectSubjectColor('emerald')"
+                                class="w-8 h-8 rounded-full bg-emerald-500 color-btn"
+                                data-color="emerald"></button>
 
                     </div>
 
@@ -761,40 +834,54 @@
             <div class="flex justify-end space-x-3 pt-2">
 
                 <button onclick="closeAddSubjectModal()"
-                    class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-semibold transition-all">
+                        class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-semibold transition-all">
                     İptal
                 </button>
 
                 <button onclick="saveNewSubject()"
-                    class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-semibold transition-all text-white shadow-lg shadow-purple-500/30">
+                        class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-semibold transition-all text-white shadow-lg shadow-purple-500/30">
                     Kaydet
                 </button>
 
             </div>
 
         </div>
+
     </div>
 
-    <!-- ADD SCHEDULE MODAL -->
+    <!-- ================= ADD SCHEDULE MODAL ================= -->
+
     <div id="modal-add-schedule"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden px-4">
+         class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden px-4">
 
         <div class="glass-panel rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-6 border border-slate-700/80 shadow-2xl">
 
             <div class="flex items-center justify-between">
 
-                <h3 class="text-xl font-bold">
-                    Program Görevi Ekle
-                </h3>
+                <div>
+
+                    <h3 class="text-xl font-bold">
+                        Haftalık Görev Ekle
+                    </h3>
+
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Gün ve saat seçerek haftalık programına ekle.
+                    </p>
+
+                </div>
 
                 <button onclick="closeAddScheduleModal()"
-                    class="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white">
+                        class="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white">
+
                     <i class="fa-solid fa-xmark"></i>
+
                 </button>
 
             </div>
 
             <div class="space-y-4">
+
+                <!-- Task -->
 
                 <div>
 
@@ -803,47 +890,75 @@
                     </label>
 
                     <input type="text"
-                        id="modal-schedule-title"
-                        placeholder="Örn: Paragraf Denemesi"
-                        class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+                           id="modal-schedule-title"
+                           placeholder="Örn: Paragraf Denemesi"
+                           class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
 
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <!-- Day -->
 
-                    <div>
+                <div>
 
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-                            Saat / Zaman
-                        </label>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                        Gün
+                    </label>
 
-                        <input type="text"
-                            id="modal-schedule-time"
-                            placeholder="09:00 - 10:00"
+                    <select id="modal-schedule-day"
                             class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+
+                        <option value="Pazartesi">Pazartesi</option>
+                        <option value="Salı">Salı</option>
+                        <option value="Çarşamba">Çarşamba</option>
+                        <option value="Perşembe">Perşembe</option>
+                        <option value="Cuma">Cuma</option>
+                        <option value="Cumartesi">Cumartesi</option>
+                        <option value="Pazar">Pazar</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Time -->
+
+                <div>
+
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                        Çalışma Saati
+                    </label>
+
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <div>
+
+                            <span class="text-[11px] text-slate-500 block mb-1">
+                                Başlangıç
+                            </span>
+
+                            <select id="modal-schedule-start"
+                                    class="w-full px-3 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <span class="text-[11px] text-slate-500 block mb-1">
+                                Bitiş
+                            </span>
+
+                            <select id="modal-schedule-end"
+                                    class="w-full px-3 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
+                            </select>
+
+                        </div>
 
                     </div>
 
-                    <div>
-
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-                            Gün
-                        </label>
-
-                        <select id="modal-schedule-day"
-                            class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm focus:outline-none focus:border-purple-500">
-
-                            <option value="Pazartesi">Pazartesi</option>
-                            <option value="Salı">Salı</option>
-                            <option value="Çarşamba">Çarşamba</option>
-                            <option value="Perşembe">Perşembe</option>
-                            <option value="Cuma">Cuma</option>
-                            <option value="Cumartesi">Cumartesi</option>
-                            <option value="Pazar">Pazar</option>
-
-                        </select>
-
-                    </div>
+                    <p id="time-warning"
+                       class="hidden text-xs text-red-400 mt-2">
+                        Bitiş saati başlangıç saatinden sonra olmalıdır.
+                    </p>
 
                 </div>
 
@@ -852,22 +967,28 @@
             <div class="flex justify-end space-x-3 pt-2">
 
                 <button onclick="closeAddScheduleModal()"
-                    class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-semibold transition-all">
+                        class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-semibold transition-all">
                     İptal
                 </button>
 
                 <button onclick="saveNewScheduleTask()"
-                    class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-semibold transition-all text-white shadow-lg shadow-purple-500/30">
-                    Ekle
+                        class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-sm font-semibold transition-all text-white shadow-lg shadow-purple-500/30">
+                    Haftalık Plana Ekle
                 </button>
 
             </div>
 
         </div>
+
     </div>
 
-    <!-- ================= APPLICATION LOGIC ================= -->
+    <!-- ================= JAVASCRIPT ================= -->
+
     <script>
+
+        /* =========================================================
+           DEFAULT DATA
+        ========================================================= */
 
         const defaultSubjects = [
             {
@@ -880,25 +1001,53 @@
                         id: 'm1',
                         name: 'Temel Kavramlar',
                         tasks: [
-                            { id: 't1_1', name: 'Konu Özeti Çalışması', completed: true },
-                            { id: 't1_2', name: 'Temel Düzey 30 Soru', completed: true },
-                            { id: 't1_3', name: 'ÖSYM Çıkmış Sorular', completed: false }
+                            {
+                                id: 't1_1',
+                                name: 'Konu Özeti Çalışması',
+                                completed: true
+                            },
+                            {
+                                id: 't1_2',
+                                name: 'Temel Düzey 30 Soru',
+                                completed: true
+                            },
+                            {
+                                id: 't1_3',
+                                name: 'ÖSYM Çıkmış Sorular',
+                                completed: false
+                            }
                         ]
                     },
                     {
                         id: 'm2',
                         name: 'Sayı Basamakları',
                         tasks: [
-                            { id: 't2_1', name: 'Konu Anlatım Videosu', completed: true },
-                            { id: 't2_2', name: 'Test Çözümü (25 Soru)', completed: false }
+                            {
+                                id: 't2_1',
+                                name: 'Konu Anlatım Videosu',
+                                completed: true
+                            },
+                            {
+                                id: 't2_2',
+                                name: 'Test Çözümü (25 Soru)',
+                                completed: false
+                            }
                         ]
                     },
                     {
                         id: 'm3',
                         name: 'Üslü ve Köklü Sayılar',
                         tasks: [
-                            { id: 't3_1', name: 'Kurallar Tekrarı', completed: false },
-                            { id: 't3_2', name: 'Beceri Temelli Sorular', completed: false }
+                            {
+                                id: 't3_1',
+                                name: 'Kurallar Tekrarı',
+                                completed: false
+                            },
+                            {
+                                id: 't3_2',
+                                name: 'Beceri Temelli Sorular',
+                                completed: false
+                            }
                         ]
                     }
                 ]
@@ -914,16 +1063,32 @@
                         id: 'tr1',
                         name: 'Sözcükte ve Cümlede Anlam',
                         tasks: [
-                            { id: 'tr1_1', name: 'Paragraf Taktikleri Notu', completed: true },
-                            { id: 'tr1_2', name: 'Günlük 40 Soru Çözümü', completed: true }
+                            {
+                                id: 'tr1_1',
+                                name: 'Paragraf Taktikleri Notu',
+                                completed: true
+                            },
+                            {
+                                id: 'tr1_2',
+                                name: 'Günlük 40 Soru Çözümü',
+                                completed: true
+                            }
                         ]
                     },
                     {
                         id: 'tr2',
                         name: 'Yazım Kuralları ve Noktalama',
                         tasks: [
-                            { id: 'tr2_1', name: 'İstisnai Kurallar Tekrarı', completed: false },
-                            { id: 'tr2_2', name: 'Deneme Analizi', completed: false }
+                            {
+                                id: 'tr2_1',
+                                name: 'İstisnai Kurallar Tekrarı',
+                                completed: false
+                            },
+                            {
+                                id: 'tr2_2',
+                                name: 'Deneme Analizi',
+                                completed: false
+                            }
                         ]
                     }
                 ]
@@ -939,18 +1104,35 @@
                         id: 'f1',
                         name: 'Madde ve Özellikleri',
                         tasks: [
-                            { id: 'f1_1', name: 'Özkütle ve Dayanıklılık', completed: true },
-                            { id: 'f1_2', name: 'Soru Bankası Testi', completed: false }
+                            {
+                                id: 'f1_1',
+                                name: 'Özkütle ve Dayanıklılık',
+                                completed: true
+                            },
+                            {
+                                id: 'f1_2',
+                                name: 'Soru Bankası Testi',
+                                completed: false
+                            }
                         ]
                     }
                 ]
             }
         ];
 
+
+        /*
+         * Varsayılan haftalık program.
+         * Saatler artık "time" olarak tutuluyor.
+         * Yeni eklenen görevlerde kullanıcı saat seçiyor.
+         */
+
         const defaultSchedules = [
             {
                 id: 'sch1',
                 title: 'Sabit Paragraf (30 Soru)',
+                startTime: '08:30',
+                endTime: '09:15',
                 time: '08:30 - 09:15',
                 day: 'Pazartesi',
                 completed: true
@@ -958,6 +1140,8 @@
             {
                 id: 'sch2',
                 title: 'Matematik Temel Kavramlar',
+                startTime: '09:30',
+                endTime: '11:00',
                 time: '09:30 - 11:00',
                 day: 'Pazartesi',
                 completed: true
@@ -965,13 +1149,18 @@
             {
                 id: 'sch3',
                 title: 'Fizik Madde ve Özellikleri',
+                startTime: '13:00',
+                endTime: '14:30',
                 time: '13:00 - 14:30',
                 day: 'Salı',
                 completed: false
             }
         ];
 
-        // ================= STATE =================
+
+        /* =========================================================
+           LOCAL STORAGE
+        ========================================================= */
 
         let subjects =
             JSON.parse(localStorage.getItem('yks_subjects')) ||
@@ -981,57 +1170,22 @@
             JSON.parse(localStorage.getItem('yks_schedules')) ||
             defaultSchedules;
 
+        let activityDates =
+            JSON.parse(localStorage.getItem('yks_activity_dates')) ||
+            [];
+
         let currentActiveSubjectId = null;
         let currentActiveTopicId = null;
         let selectedColor = 'purple';
 
-        // Günlük seri için tamamlanan günler
-        let activityDates =
-            JSON.parse(localStorage.getItem('yks_activity_dates')) || [];
+        const ACTIVITY_STORAGE_KEY = 'yks_activity_dates';
 
 
-        // ================= DATA =================
+        /* =========================================================
+           DATE / STREAK SYSTEM
+        ========================================================= */
 
-        function saveData() {
-
-            localStorage.setItem(
-                'yks_subjects',
-                JSON.stringify(subjects)
-            );
-
-            localStorage.setItem(
-                'yks_schedules',
-                JSON.stringify(schedules)
-            );
-
-            updateAllUI();
-        }
-
-
-        // ================= DAILY STREAK =================
-
-        function getTodayKey() {
-
-            const now = new Date();
-
-            const year = now.getFullYear();
-
-            const month =
-                String(now.getMonth() + 1).padStart(2, '0');
-
-            const day =
-                String(now.getDate()).padStart(2, '0');
-
-            return `${year}-${month}-${day}`;
-        }
-
-
-        function getPreviousDayKey(dateKey) {
-
-            const date =
-                new Date(dateKey + 'T00:00:00');
-
-            date.setDate(date.getDate() - 1);
+        function getLocalDateKey(date = new Date()) {
 
             const year = date.getFullYear();
 
@@ -1045,16 +1199,18 @@
         }
 
 
-        function registerDailyActivity() {
+        function recordActivityToday() {
 
-            const today = getTodayKey();
+            const today = getLocalDateKey();
 
             if (!activityDates.includes(today)) {
 
                 activityDates.push(today);
 
+                activityDates.sort();
+
                 localStorage.setItem(
-                    'yks_activity_dates',
+                    ACTIVITY_STORAGE_KEY,
                     JSON.stringify(activityDates)
                 );
             }
@@ -1063,41 +1219,70 @@
 
         function getDailyStreak() {
 
-            const today = getTodayKey();
+            const today = getLocalDateKey();
 
-            // Bugün hiç görev yapılmadıysa seri 0
+            /*
+             * Bugün hiçbir görev yapılmadıysa
+             * seri direkt 0 olur.
+             */
+
             if (!activityDates.includes(today)) {
                 return 0;
             }
 
-            let streak = 1;
-            let currentDay = today;
+            let streak = 0;
 
-            while (true) {
+            const checkDate = new Date();
 
-                const previousDay =
-                    getPreviousDayKey(currentDay);
+            while (
+                activityDates.includes(
+                    getLocalDateKey(checkDate)
+                )
+            ) {
 
-                if (activityDates.includes(previousDay)) {
+                streak++;
 
-                    streak++;
-                    currentDay = previousDay;
-
-                } else {
-                    break;
-                }
+                checkDate.setDate(
+                    checkDate.getDate() - 1
+                );
             }
 
             return streak;
         }
 
 
-        // ================= THEME =================
+        /* =========================================================
+           SAVE
+        ========================================================= */
+
+        function saveData() {
+
+            localStorage.setItem(
+                'yks_subjects',
+                JSON.stringify(subjects)
+            );
+
+            localStorage.setItem(
+                'yks_schedules',
+                JSON.stringify(schedules)
+            );
+
+            localStorage.setItem(
+                ACTIVITY_STORAGE_KEY,
+                JSON.stringify(activityDates)
+            );
+
+            updateAllUI();
+        }
+
+
+        /* =========================================================
+           THEME
+        ========================================================= */
 
         function toggleTheme() {
 
             const html = document.documentElement;
-
             const themeIcon =
                 document.getElementById('theme-icon');
 
@@ -1134,20 +1319,26 @@
         }
 
 
-        if (localStorage.getItem('yks_theme') === 'light') {
+        if (
+            localStorage.getItem('yks_theme') === 'light'
+        ) {
 
             document.documentElement.classList.remove('dark');
+
             document.documentElement.classList.add('light');
 
-            document.getElementById('theme-icon')
-                .classList.replace(
-                    'fa-moon',
-                    'fa-sun'
-                );
+            document.getElementById(
+                'theme-icon'
+            ).classList.replace(
+                'fa-moon',
+                'fa-sun'
+            );
         }
 
 
-        // ================= NAVIGATION =================
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
 
         function switchTab(tabId) {
 
@@ -1165,6 +1356,7 @@
                 if (el) {
                     el.classList.add('hidden');
                 }
+
             });
 
 
@@ -1183,16 +1375,26 @@
                     document.getElementById(`nav-${t}`);
 
                 const mobBtn =
-                    document.getElementById(`mobile-nav-${t}`);
+                    document.getElementById(
+                        `mobile-nav-${t}`
+                    );
+
+
+                const active =
+                    t === tabId ||
+                    (
+                        tabId === 'topics' &&
+                        t === 'subjects'
+                    ) ||
+                    (
+                        tabId === 'tasks' &&
+                        t === 'subjects'
+                    );
 
 
                 if (navBtn) {
 
-                    if (
-                        t === tabId ||
-                        (tabId === 'topics' && t === 'subjects') ||
-                        (tabId === 'tasks' && t === 'subjects')
-                    ) {
+                    if (active) {
 
                         navBtn.className =
                             "px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 bg-purple-600 text-white shadow-md shadow-purple-500/20";
@@ -1201,17 +1403,14 @@
 
                         navBtn.className =
                             "px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+
                     }
                 }
 
 
                 if (mobBtn) {
 
-                    if (
-                        t === tabId ||
-                        (tabId === 'topics' && t === 'subjects') ||
-                        (tabId === 'tasks' && t === 'subjects')
-                    ) {
+                    if (active) {
 
                         mobBtn.className =
                             "flex flex-col items-center py-1 text-purple-600 dark:text-purple-400";
@@ -1220,8 +1419,10 @@
 
                         mobBtn.className =
                             "flex flex-col items-center py-1 text-slate-500 dark:text-slate-400";
+
                     }
                 }
+
             });
 
 
@@ -1232,7 +1433,9 @@
         }
 
 
-        // ================= SCHEDULE TABS =================
+        /* =========================================================
+           SCHEDULE SUB TABS
+        ========================================================= */
 
         function switchScheduleSubTab(subTabId) {
 
@@ -1258,7 +1461,9 @@
                     "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-purple-600 text-white shadow-md";
 
                 btnWeekly.className =
-                    "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-white";
+                    "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400";
+
+                renderDailySchedules();
 
             } else {
 
@@ -1269,23 +1474,30 @@
                     "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-purple-600 text-white shadow-md";
 
                 btnDaily.className =
-                    "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-white";
+                    "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400";
 
                 renderWeeklyGrid();
             }
         }
 
 
-        // ================= PROGRESS =================
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
 
         function getTopicProgress(topic) {
 
-            if (!topic.tasks || topic.tasks.length === 0) {
+            if (
+                !topic.tasks ||
+                topic.tasks.length === 0
+            ) {
                 return 0;
             }
 
             const completed =
-                topic.tasks.filter(t => t.completed).length;
+                topic.tasks.filter(
+                    t => t.completed
+                ).length;
 
             return Math.round(
                 (completed / topic.tasks.length) * 100
@@ -1334,13 +1546,16 @@
         }
 
 
-        // ================= COLORS =================
+        /* =========================================================
+           COLORS
+        ========================================================= */
 
         function getColorClasses(colorName) {
 
             switch (colorName) {
 
                 case 'cyan':
+
                     return {
                         bg: 'bg-cyan-500/10',
                         text: 'text-cyan-600 dark:text-cyan-400',
@@ -1349,6 +1564,7 @@
                     };
 
                 case 'pink':
+
                     return {
                         bg: 'bg-pink-500/10',
                         text: 'text-pink-600 dark:text-pink-400',
@@ -1357,6 +1573,7 @@
                     };
 
                 case 'amber':
+
                     return {
                         bg: 'bg-amber-500/10',
                         text: 'text-amber-600 dark:text-amber-400',
@@ -1365,6 +1582,7 @@
                     };
 
                 case 'emerald':
+
                     return {
                         bg: 'bg-emerald-500/10',
                         text: 'text-emerald-600 dark:text-emerald-400',
@@ -1373,6 +1591,7 @@
                     };
 
                 default:
+
                     return {
                         bg: 'bg-purple-500/10',
                         text: 'text-purple-600 dark:text-purple-400',
@@ -1383,15 +1602,66 @@
         }
 
 
-        // ================= UI UPDATE =================
+        /* =========================================================
+           COUNTDOWN
+        ========================================================= */
+
+        function updateCountdown() {
+
+            /*
+             * YKS 2027
+             * 19 Haziran 2027
+             * Saat 10:00
+             */
+
+            const examDate =
+                new Date('2027-06-19T10:00:00');
+
+            const now = new Date();
+
+            const diff =
+                examDate - now;
+
+            const diffDays =
+                Math.ceil(
+                    diff /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            const countdown =
+                document.getElementById(
+                    'yks-countdown'
+                );
+
+
+            if (diff > 0) {
+
+                countdown.innerText =
+                    `YKS'ye Kalan: ${diffDays} Gün`;
+
+            } else {
+
+                countdown.innerText =
+                    `YKS Zamanı! Başarılar!`;
+            }
+        }
+
+
+        /* =========================================================
+           UPDATE ALL UI
+        ========================================================= */
 
         function updateAllUI() {
 
             renderDashboard();
+
             renderSubjectsGrid();
+
             renderDailySchedules();
 
             if (currentActiveSubjectId) {
+
                 renderTopicsView(
                     currentActiveSubjectId
                 );
@@ -1412,29 +1682,9 @@
         }
 
 
-        function updateCountdown() {
-
-            const examDate =
-                new Date('2027-06-20T10:00:00');
-
-            const now = new Date();
-
-            const diffDays =
-                Math.ceil(
-                    (examDate - now) /
-                    (1000 * 60 * 60 * 24)
-                );
-
-            document.getElementById(
-                'yks-countdown'
-            ).innerText =
-                diffDays > 0
-                    ? `YKS'ye Kalan: ${diffDays} Gün`
-                    : `YKS Zamanı! Başarılar!`;
-        }
-
-
-        // ================= DASHBOARD =================
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
 
         function renderDashboard() {
 
@@ -1454,6 +1704,7 @@
                 circumference -
                 (totalPct / 100) *
                 circumference;
+
 
             ring.style.strokeDashoffset =
                 offset;
@@ -1491,6 +1742,7 @@
                             tk => tk.completed
                         ).length;
                 });
+
             });
 
 
@@ -1506,14 +1758,13 @@
                 `${completedTasksCount} / ${totalTasksCount}`;
 
 
-            // GÜNLÜK SERİ
             document.getElementById(
                 'stat-daily-streak'
             ).innerText =
-                `${getDailyStreak()} Gün`;
+                `${getDailyStreak()} gün`;
 
 
-            // Dashboard Subjects
+            /* Dashboard subject cards */
 
             const grid =
                 document.getElementById(
@@ -1523,73 +1774,82 @@
             grid.innerHTML = '';
 
 
-            subjects.slice(0, 6).forEach(sub => {
+            subjects
+                .slice(0, 6)
+                .forEach(sub => {
 
-                const pct =
-                    getSubjectProgress(sub);
+                    const pct =
+                        getSubjectProgress(sub);
 
-                const colors =
-                    getColorClasses(sub.color);
-
-
-                const card =
-                    document.createElement('div');
-
-
-                card.className =
-                    "glass-panel rounded-2xl p-5 space-y-4 hover:scale-[1.01] transition-all cursor-pointer border border-slate-200/40 dark:border-slate-800/80";
+                    const colors =
+                        getColorClasses(
+                            sub.color
+                        );
 
 
-                card.onclick =
-                    () => openTopicsView(sub.id);
+                    const card =
+                        document.createElement('div');
 
 
-                card.innerHTML = `
+                    card.className =
+                        "glass-panel rounded-2xl p-5 space-y-4 hover:scale-[1.01] transition-all cursor-pointer border border-slate-200/40 dark:border-slate-800/80";
 
-                    <div class="flex items-center justify-between">
 
-                        <div class="flex items-center space-x-3">
+                    card.onclick =
+                        () => openTopicsView(sub.id);
 
-                            <div class="w-10 h-10 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-book"></i>
+
+                    card.innerHTML = `
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="flex items-center space-x-3">
+
+                                <div class="w-10 h-10 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center font-bold">
+
+                                    <i class="fa-solid fa-book"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-bold text-base">
+                                        ${sub.name}
+                                    </h4>
+
+                                    <span class="text-xs text-slate-500 dark:text-slate-400">
+                                        ${sub.category}
+                                    </span>
+
+                                </div>
+
                             </div>
 
-                            <div>
-
-                                <h4 class="font-bold text-base">
-                                    ${sub.name}
-                                </h4>
-
-                                <span class="text-xs text-slate-500 dark:text-slate-400">
-                                    ${sub.category}
-                                </span>
-
-                            </div>
+                            <span class="text-sm font-extrabold ${colors.text}">
+                                ${pct}%
+                            </span>
 
                         </div>
 
-                        <span class="text-sm font-extrabold ${colors.text}">
-                            ${pct}%
-                        </span>
+                        <div class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
 
-                    </div>
+                            <div
+                                class="h-full bg-gradient-to-r ${colors.bar} transition-all duration-500"
+                                style="width: ${pct}%">
+                            </div>
 
-                    <div class="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-
-                        <div
-                            class="h-full bg-gradient-to-r ${colors.bar} transition-all duration-500"
-                            style="width: ${pct}%">
                         </div>
+                    `;
 
-                    </div>
-                `;
 
-                grid.appendChild(card);
-            });
+                    grid.appendChild(card);
+                });
         }
 
 
-        // ================= SUBJECTS =================
+        /* =========================================================
+           SUBJECTS
+        ========================================================= */
 
         function renderSubjectsGrid() {
 
@@ -1614,10 +1874,13 @@
                         <button
                             onclick="openAddSubjectModal()"
                             class="px-6 py-3 rounded-2xl bg-purple-600 text-white font-semibold text-sm shadow-lg shadow-purple-500/20">
+
                             + Ders Ekle
+
                         </button>
 
                     </div>
+
                 `;
 
                 return;
@@ -1654,7 +1917,9 @@
                             <div class="flex items-center space-x-3">
 
                                 <div class="w-12 h-12 rounded-2xl ${colors.bg} ${colors.text} flex items-center justify-center text-lg font-bold shadow-sm">
+
                                     <i class="fa-solid fa-book-bookmark"></i>
+
                                 </div>
 
                                 <div>
@@ -1710,23 +1975,30 @@
                     </div>
 
                     <div class="w-full py-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/80 text-center font-semibold text-xs text-purple-600 dark:text-purple-300">
+
                         Konuları Gör →
+
                     </div>
+
                 `;
+
 
                 grid.appendChild(card);
             });
         }
 
 
-        // ================= TOPICS =================
+        /* =========================================================
+           TOPICS
+        ========================================================= */
 
         function openTopicsView(subjectId) {
 
             currentActiveSubjectId =
                 subjectId;
 
-            currentActiveTopicId = null;
+            currentActiveTopicId =
+                null;
 
             renderTopicsView(subjectId);
 
@@ -1740,6 +2012,7 @@
                 subjects.find(
                     s => s.id === subjectId
                 );
+
 
             if (!sub) return;
 
@@ -1798,10 +2071,14 @@
 
                     <div class="text-center py-8">
 
-                        <i class="fa-solid fa-book-open text-3xl text-slate-400 mb-3"></i>
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mx-auto mb-3">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                        </div>
 
                         <p class="text-slate-500 text-sm">
-                            Bu derste henüz konu yok.
+                            Henüz konu eklenmemiş.
                         </p>
 
                         <p class="text-xs text-slate-400 mt-1">
@@ -1831,11 +2108,10 @@
 
 
                 item.onclick =
-                    () =>
-                        openTasksView(
-                            sub.id,
-                            topic.id
-                        );
+                    () => openTasksView(
+                        sub.id,
+                        topic.id
+                    );
 
 
                 item.innerHTML = `
@@ -1843,7 +2119,9 @@
                     <div class="flex items-center space-x-4 flex-1">
 
                         <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-sm">
+
                             ${topicPct}%
+
                         </div>
 
                         <div class="flex-1">
@@ -1873,15 +2151,14 @@
                         <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
 
                     </div>
+
                 `;
+
 
                 list.appendChild(item);
             });
         }
 
-
-        // YENİ KONU
-        // Artık otomatik görev oluşturmaz.
 
         function addNewTopic() {
 
@@ -1912,6 +2189,12 @@
 
             if (sub) {
 
+                /*
+                 * ÖNEMLİ:
+                 * Yeni konu oluşturulunca
+                 * artık otomatik görev oluşturulmuyor.
+                 */
+
                 sub.topics.push({
 
                     id:
@@ -1921,7 +2204,8 @@
                     name:
                         name,
 
-                    tasks: []
+                    tasks:
+                        []
 
                 });
 
@@ -1948,7 +2232,8 @@
 
             const sub =
                 subjects.find(
-                    s => s.id === subjectId
+                    s =>
+                        s.id === subjectId
                 );
 
 
@@ -1957,19 +2242,20 @@
 
             sub.topics =
                 sub.topics.filter(
-                    t => t.id !== topicId
+                    t =>
+                        t.id !== topicId
                 );
 
 
             saveData();
 
-            renderTopicsView(
-                subjectId
-            );
+            renderTopicsView(subjectId);
         }
 
 
-        // ================= TASKS =================
+        /* =========================================================
+           TASKS
+        ========================================================= */
 
         function openTasksView(
             subjectId,
@@ -1998,7 +2284,8 @@
 
             const sub =
                 subjects.find(
-                    s => s.id === subjectId
+                    s =>
+                        s.id === subjectId
                 );
 
 
@@ -2007,7 +2294,8 @@
 
             const topic =
                 sub.topics.find(
-                    t => t.id === topicId
+                    t =>
+                        t.id === topicId
                 );
 
 
@@ -2068,7 +2356,11 @@
 
                     <div class="text-center py-8">
 
-                        <i class="fa-solid fa-list-check text-3xl text-slate-400 mb-3"></i>
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mx-auto mb-3">
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                        </div>
 
                         <p class="text-slate-500 text-sm">
                             Bu konuya henüz görev eklenmemiş.
@@ -2095,8 +2387,8 @@
                 item.className =
                     `flex items-center justify-between p-3.5 rounded-xl border transition-all ${
                         task.completed
-                            ? 'bg-emerald-500/10 border-emerald-500/30'
-                            : 'bg-slate-100/50 dark:bg-slate-900/50 border-slate-200/40 dark:border-slate-800/80'
+                        ? 'bg-emerald-500/10 border-emerald-500/30'
+                        : 'bg-slate-100/50 dark:bg-slate-900/50 border-slate-200/40 dark:border-slate-800/80'
                     }`;
 
 
@@ -2106,27 +2398,25 @@
                         class="flex items-center space-x-3 cursor-pointer flex-1"
                         onclick="toggleTaskCompletion('${sub.id}', '${topic.id}', '${task.id}')">
 
-                        <div
-                            class="w-6 h-6 rounded-lg flex items-center justify-center border transition-all ${
-                                task.completed
-                                    ? 'bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/30'
-                                    : 'border-slate-400 dark:border-slate-600'
-                            }">
+                        <div class="w-6 h-6 rounded-lg flex items-center justify-center border transition-all ${
+                            task.completed
+                            ? 'bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/30'
+                            : 'border-slate-400 dark:border-slate-600'
+                        }">
 
                             ${
                                 task.completed
-                                    ? '<i class="fa-solid fa-check text-xs"></i>'
-                                    : ''
+                                ? '<i class="fa-solid fa-check text-xs"></i>'
+                                : ''
                             }
 
                         </div>
 
-                        <span
-                            class="text-sm font-medium ${
-                                task.completed
-                                    ? 'line-through text-slate-400 dark:text-slate-500'
-                                    : ''
-                            }">
+                        <span class="text-sm font-medium ${
+                            task.completed
+                            ? 'line-through text-slate-400 dark:text-slate-500'
+                            : ''
+                        }">
 
                             ${task.name}
 
@@ -2141,14 +2431,15 @@
                         <i class="fa-solid fa-trash-can text-xs"></i>
 
                     </button>
+
                 `;
+
 
                 list.appendChild(item);
             });
         }
 
 
-        // GÖREV TAMAMLAMA
         function toggleTaskCompletion(
             subjectId,
             topicId,
@@ -2157,7 +2448,8 @@
 
             const sub =
                 subjects.find(
-                    s => s.id === subjectId
+                    s =>
+                        s.id === subjectId
                 );
 
 
@@ -2166,7 +2458,8 @@
 
             const topic =
                 sub.topics.find(
-                    t => t.id === topicId
+                    t =>
+                        t.id === topicId
                 );
 
 
@@ -2175,26 +2468,36 @@
 
             const task =
                 topic.tasks.find(
-                    tk => tk.id === taskId
+                    tk =>
+                        tk.id === taskId
                 );
 
 
             if (task) {
 
+                const wasCompleted =
+                    task.completed;
+
+
                 task.completed =
                     !task.completed;
 
 
-                // Görev tamamlandıysa
-                // bugünü çalışma günü olarak kaydet.
+                /*
+                 * Bir görevi ilk defa tamamladığın
+                 * gün aktivite olarak kaydedilir.
+                 */
 
-                if (task.completed) {
-                    registerDailyActivity();
+                if (
+                    !wasCompleted &&
+                    task.completed
+                ) {
+
+                    recordActivityToday();
                 }
 
 
                 saveData();
-
 
                 renderTasksView(
                     subjectId,
@@ -2232,43 +2535,42 @@
                 );
 
 
-            if (sub) {
-
-                const topic =
-                    sub.topics.find(
-                        t =>
-                            t.id ===
-                            currentActiveTopicId
-                    );
+            if (!sub) return;
 
 
-                if (topic) {
-
-                    topic.tasks.push({
-
-                        id:
-                            'tsk_' +
-                            Date.now(),
-
-                        name:
-                            name,
-
-                        completed:
-                            false
-
-                    });
-
-
-                    input.value = '';
-
-                    saveData();
-
-                    renderTasksView(
-                        currentActiveSubjectId,
+            const topic =
+                sub.topics.find(
+                    t =>
+                        t.id ===
                         currentActiveTopicId
-                    );
-                }
-            }
+                );
+
+
+            if (!topic) return;
+
+
+            topic.tasks.push({
+
+                id:
+                    'tsk_' +
+                    Date.now(),
+
+                name:
+                    name,
+
+                completed:
+                    false
+            });
+
+
+            input.value = '';
+
+            saveData();
+
+            renderTasksView(
+                currentActiveSubjectId,
+                currentActiveTopicId
+            );
         }
 
 
@@ -2280,7 +2582,8 @@
 
             const sub =
                 subjects.find(
-                    s => s.id === subjectId
+                    s =>
+                        s.id === subjectId
                 );
 
 
@@ -2289,7 +2592,8 @@
 
             const topic =
                 sub.topics.find(
-                    t => t.id === topicId
+                    t =>
+                        t.id === topicId
                 );
 
 
@@ -2305,7 +2609,6 @@
 
             saveData();
 
-
             renderTasksView(
                 subjectId,
                 topicId
@@ -2313,7 +2616,129 @@
         }
 
 
-        // ================= SCHEDULES =================
+        /* =========================================================
+           SCHEDULE / TIME SYSTEM
+        ========================================================= */
+
+        const weekDays = [
+            'Pazartesi',
+            'Salı',
+            'Çarşamba',
+            'Perşembe',
+            'Cuma',
+            'Cumartesi',
+            'Pazar'
+        ];
+
+
+        function getTodayTurkishDay() {
+
+            const days = [
+                'Pazar',
+                'Pazartesi',
+                'Salı',
+                'Çarşamba',
+                'Perşembe',
+                'Cuma',
+                'Cumartesi'
+            ];
+
+            return days[
+                new Date().getDay()
+            ];
+        }
+
+
+        function timeToMinutes(time) {
+
+            if (!time) {
+                return 9999;
+            }
+
+            const parts =
+                time.split(':');
+
+            return (
+                Number(parts[0]) * 60 +
+                Number(parts[1])
+            );
+        }
+
+
+        function normalizeSchedule(schedule) {
+
+            /*
+             * Eski sürümde sadece "time" vardı.
+             * Eski verilerin bozulmaması için
+             * startTime ve endTime'i otomatik çıkarıyoruz.
+             */
+
+            if (
+                !schedule.startTime ||
+                !schedule.endTime
+            ) {
+
+                if (
+                    schedule.time &&
+                    schedule.time.includes('-')
+                ) {
+
+                    const parts =
+                        schedule.time
+                            .split('-')
+                            .map(x => x.trim());
+
+
+                    schedule.startTime =
+                        parts[0] || '09:00';
+
+                    schedule.endTime =
+                        parts[1] || '10:00';
+
+                } else {
+
+                    schedule.startTime =
+                        '09:00';
+
+                    schedule.endTime =
+                        '10:00';
+                }
+            }
+
+
+            schedule.time =
+                `${schedule.startTime} - ${schedule.endTime}`;
+
+
+            if (
+                typeof schedule.completed !==
+                'boolean'
+            ) {
+
+                schedule.completed =
+                    false;
+            }
+
+
+            return schedule;
+        }
+
+
+        function sortSchedules(schedulesArray) {
+
+            return [...schedulesArray]
+                .map(normalizeSchedule)
+                .sort(
+                    (a, b) =>
+                        timeToMinutes(a.startTime) -
+                        timeToMinutes(b.startTime)
+                );
+        }
+
+
+        /* =========================================================
+           DAILY PROGRAM
+        ========================================================= */
 
         function renderDailySchedules() {
 
@@ -2323,22 +2748,65 @@
                 );
 
 
+            const today =
+                getTodayTurkishDay();
+
+
+            document.getElementById(
+                'current-date-title'
+            ).innerText =
+                `Bugünün Programı • ${today}`;
+
+
+            document.getElementById(
+                'current-date-description'
+            ).innerText =
+                `${today} günü için haftalık planındaki görevler.`;
+
+
+            const todaySchedules =
+                sortSchedules(
+                    schedules.filter(
+                        sch =>
+                            sch.day === today
+                    )
+                );
+
+
             list.innerHTML = '';
 
 
-            if (schedules.length === 0) {
+            if (
+                todaySchedules.length === 0
+            ) {
 
                 list.innerHTML = `
-                    <p class="text-center text-slate-500 py-8 text-sm">
-                        Programda görev bulunmuyor.
-                    </p>
+
+                    <div class="glass-panel rounded-2xl py-12 text-center">
+
+                        <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center mx-auto mb-4">
+
+                            <i class="fa-solid fa-calendar-check text-xl"></i>
+
+                        </div>
+
+                        <p class="text-slate-500 text-sm">
+                            Bugün için planlanmış görev yok.
+                        </p>
+
+                        <p class="text-xs text-slate-400 mt-2">
+                            Haftalık Plan bölümünden bugüne görev ekleyebilirsin.
+                        </p>
+
+                    </div>
+
                 `;
 
                 return;
             }
 
 
-            schedules.forEach(sch => {
+            todaySchedules.forEach(sch => {
 
                 const item =
                     document.createElement('div');
@@ -2347,8 +2815,8 @@
                 item.className =
                     `glass-panel rounded-2xl p-4 flex items-center justify-between border transition-all ${
                         sch.completed
-                            ? 'bg-emerald-500/5 border-emerald-500/20 opacity-75'
-                            : 'border-slate-200/40 dark:border-slate-800/80'
+                        ? 'bg-emerald-500/5 border-emerald-500/20 opacity-75'
+                        : 'border-slate-200/40 dark:border-slate-800/80'
                     }`;
 
 
@@ -2358,43 +2826,41 @@
                         class="flex items-center space-x-4 cursor-pointer flex-1"
                         onclick="toggleSchedule('${sch.id}')">
 
-                        <div
-                            class="w-7 h-7 rounded-xl flex items-center justify-center border transition-all ${
-                                sch.completed
-                                    ? 'bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/30'
-                                    : 'border-slate-400 dark:border-slate-600'
-                            }">
+                        <div class="w-8 h-8 rounded-xl flex items-center justify-center border transition-all ${
+                            sch.completed
+                            ? 'bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/30'
+                            : 'border-slate-400 dark:border-slate-600'
+                        }">
 
                             ${
                                 sch.completed
-                                    ? '<i class="fa-solid fa-check text-xs"></i>'
-                                    : ''
+                                ? '<i class="fa-solid fa-check text-xs"></i>'
+                                : ''
                             }
 
                         </div>
 
                         <div>
 
-                            <h4
-                                class="text-sm font-bold ${
-                                    sch.completed
-                                        ? 'line-through text-slate-400 dark:text-slate-500'
-                                        : ''
-                                }">
+                            <h4 class="text-sm font-bold ${
+                                sch.completed
+                                ? 'line-through text-slate-400 dark:text-slate-500'
+                                : ''
+                            }">
 
                                 ${sch.title}
 
                             </h4>
 
-                            <div class="flex items-center space-x-3 mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                            <div class="flex items-center space-x-3 mt-1 text-xs text-slate-500 dark:text-slate-400">
 
                                 <span>
                                     <i class="fa-regular fa-clock mr-1"></i>
-                                    ${sch.time}
+                                    ${sch.startTime} - ${sch.endTime}
                                 </span>
 
                                 <span>
-                                    <i class="fa-solid fa-calendar mr-1"></i>
+                                    <i class="fa-solid fa-calendar-day mr-1"></i>
                                     ${sch.day}
                                 </span>
 
@@ -2411,52 +2877,94 @@
                         <i class="fa-solid fa-trash-can text-sm"></i>
 
                     </button>
+
                 `;
+
 
                 list.appendChild(item);
             });
         }
 
 
-        // PROGRAM GÖREVİ TAMAMLAMA
+        /* =========================================================
+           TOGGLE SCHEDULE
+        ========================================================= */
+
         function toggleSchedule(id) {
 
             const sch =
                 schedules.find(
-                    s => s.id === id
+                    s =>
+                        s.id === id
                 );
 
 
-            if (sch) {
-
-                sch.completed =
-                    !sch.completed;
+            if (!sch) return;
 
 
-                if (sch.completed) {
-                    registerDailyActivity();
-                }
+            const wasCompleted =
+                sch.completed;
 
 
-                saveData();
+            sch.completed =
+                !sch.completed;
 
-                renderDailySchedules();
+
+            if (
+                !wasCompleted &&
+                sch.completed
+            ) {
+
+                recordActivityToday();
             }
-        }
 
-
-        function deleteSchedule(id) {
-
-            schedules =
-                schedules.filter(
-                    s => s.id !== id
-                );
 
             saveData();
 
             renderDailySchedules();
+
+            /*
+             * Eğer haftalık görünüm açıksa
+             * onu da güncelle.
+             */
+
+            renderWeeklyGrid();
         }
 
+
+        /* =========================================================
+           DELETE SCHEDULE
+        ========================================================= */
+
+        function deleteSchedule(id) {
+
+            if (
+                !confirm(
+                    'Bu program görevini silmek istediğine emin misin?'
+                )
+            ) {
+                return;
+            }
+
+
+            schedules =
+                schedules.filter(
+                    s =>
+                        s.id !== id
+                );
+
+
+            saveData();
+
+            renderDailySchedules();
+
+            renderWeeklyGrid();
+        }
+
+
+        /* =========================================================
+           WEEKLY PROGRAM
+        ========================================================= */
 
         function renderWeeklyGrid() {
 
@@ -2469,22 +2977,14 @@
             grid.innerHTML = '';
 
 
-            const days = [
-                'Pazartesi',
-                'Salı',
-                'Çarşamba',
-                'Perşembe',
-                'Cuma',
-                'Cumartesi',
-                'Pazar'
-            ];
-
-
-            days.forEach(day => {
+            weekDays.forEach(day => {
 
                 const dayItems =
-                    schedules.filter(
-                        s => s.day === day
+                    sortSchedules(
+                        schedules.filter(
+                            s =>
+                                s.day === day
+                        )
                     );
 
 
@@ -2499,12 +2999,22 @@
                 let itemsHtml = '';
 
 
-                if (dayItems.length === 0) {
+                if (
+                    dayItems.length === 0
+                ) {
 
                     itemsHtml = `
-                        <p class="text-xs text-slate-500 text-center py-4">
-                            Etkinlik yok
-                        </p>
+
+                        <div class="text-center py-6">
+
+                            <i class="fa-regular fa-calendar text-slate-400 mb-2"></i>
+
+                            <p class="text-xs text-slate-500">
+                                Etkinlik yok
+                            </p>
+
+                        </div>
+
                     `;
 
                 } else {
@@ -2513,48 +3023,64 @@
 
                         itemsHtml += `
 
-                            <div class="p-3 rounded-xl bg-slate-100/60 dark:bg-slate-900/60 border border-slate-200/30 dark:border-slate-800/50 space-y-1">
+                            <div class="p-3 rounded-xl bg-slate-100/60 dark:bg-slate-900/60 border border-slate-200/30 dark:border-slate-800/50 space-y-2">
 
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-start justify-between gap-2">
 
-                                    <span
-                                        class="text-xs font-bold ${
+                                    <div class="flex-1">
+
+                                        <span class="text-xs font-bold ${
                                             di.completed
-                                                ? 'line-through text-slate-400'
-                                                : ''
+                                            ? 'line-through text-slate-400'
+                                            : ''
                                         }">
 
-                                        ${di.title}
+                                            ${di.title}
 
-                                    </span>
+                                        </span>
+
+                                    </div>
 
                                     <button
                                         onclick="toggleSchedule('${di.id}')"
-                                        class="w-5 h-5 rounded-md flex items-center justify-center border ${
+                                        class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center border ${
                                             di.completed
-                                                ? 'bg-emerald-500 border-emerald-500 text-white'
-                                                : 'border-slate-400'
+                                            ? 'bg-emerald-500 border-emerald-500 text-white'
+                                            : 'border-slate-400'
                                         }">
 
                                         ${
                                             di.completed
-                                                ? '<i class="fa-solid fa-check text-[10px]"></i>'
-                                                : ''
+                                            ? '<i class="fa-solid fa-check text-[10px]"></i>'
+                                            : ''
                                         }
 
                                     </button>
 
                                 </div>
 
-                                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">
+                                <div class="flex items-center justify-between">
 
-                                    <i class="fa-regular fa-clock mr-1"></i>
+                                    <span class="text-[10px] text-purple-600 dark:text-cyan-400 font-semibold">
 
-                                    ${di.time}
+                                        <i class="fa-regular fa-clock mr-1"></i>
 
-                                </span>
+                                        ${di.startTime} - ${di.endTime}
+
+                                    </span>
+
+                                    <button
+                                        onclick="deleteSchedule('${di.id}')"
+                                        class="text-slate-400 hover:text-red-500">
+
+                                        <i class="fa-solid fa-trash-can text-[10px]"></i>
+
+                                    </button>
+
+                                </div>
 
                             </div>
+
                         `;
                     });
                 }
@@ -2574,9 +3100,12 @@
 
                     </div>
 
-                    <div class="space-y-2 max-h-[350px] overflow-y-auto custom-scrollbar">
+                    <div class="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar">
+
                         ${itemsHtml}
+
                     </div>
+
                 `;
 
 
@@ -2585,31 +3114,130 @@
         }
 
 
-        // ================= MODALS =================
+        /* =========================================================
+           TIME SELECTORS
+        ========================================================= */
+
+        function populateTimeSelectors() {
+
+            const startSelect =
+                document.getElementById(
+                    'modal-schedule-start'
+                );
+
+            const endSelect =
+                document.getElementById(
+                    'modal-schedule-end'
+                );
+
+
+            startSelect.innerHTML = '';
+            endSelect.innerHTML = '';
+
+
+            /*
+             * 00:00'dan 23:45'e kadar
+             * 15 dakikalık seçenekler.
+             */
+
+            for (
+                let hour = 0;
+                hour < 24;
+                hour++
+            ) {
+
+                for (
+                    let minute = 0;
+                    minute < 60;
+                    minute += 15
+                ) {
+
+                    const time =
+                        `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+
+
+                    const startOption =
+                        document.createElement('option');
+
+                    startOption.value =
+                        time;
+
+                    startOption.textContent =
+                        time;
+
+
+                    const endOption =
+                        document.createElement('option');
+
+                    endOption.value =
+                        time;
+
+                    endOption.textContent =
+                        time;
+
+
+                    startSelect.appendChild(
+                        startOption
+                    );
+
+                    endSelect.appendChild(
+                        endOption
+                    );
+                }
+            }
+
+
+            /*
+             * Varsayılan:
+             * 09:00 - 10:00
+             */
+
+            startSelect.value =
+                '09:00';
+
+            endSelect.value =
+                '10:00';
+        }
+
+
+        /* =========================================================
+           ADD SUBJECT MODAL
+        ========================================================= */
 
         function openAddSubjectModal() {
 
             document
-                .getElementById('modal-add-subject')
-                .classList.remove('hidden');
+                .getElementById(
+                    'modal-add-subject'
+                )
+                .classList.remove(
+                    'hidden'
+                );
         }
 
 
         function closeAddSubjectModal() {
 
             document
-                .getElementById('modal-add-subject')
-                .classList.add('hidden');
+                .getElementById(
+                    'modal-add-subject'
+                )
+                .classList.add(
+                    'hidden'
+                );
         }
 
 
         function selectSubjectColor(color) {
 
-            selectedColor = color;
+            selectedColor =
+                color;
 
 
             document
-                .querySelectorAll('.color-btn')
+                .querySelectorAll(
+                    '.color-btn'
+                )
                 .forEach(btn => {
 
                     btn.classList.remove(
@@ -2621,7 +3249,8 @@
 
 
                     if (
-                        btn.dataset.color === color
+                        btn.dataset.color ===
+                        color
                     ) {
 
                         btn.classList.add(
@@ -2631,12 +3260,10 @@
                             'ring-offset-slate-900'
                         );
                     }
+
                 });
         }
 
-
-        // YENİ DERS
-        // Artık otomatik konu oluşturmaz.
 
         function saveNewSubject() {
 
@@ -2660,6 +3287,12 @@
             if (!name) return;
 
 
+            /*
+             * ÖNEMLİ:
+             * Yeni ders artık otomatik olarak
+             * konu ve görev oluşturmuyor.
+             */
+
             subjects.push({
 
                 id:
@@ -2675,17 +3308,15 @@
                 color:
                     selectedColor,
 
-                // BOŞ BAŞLAR
-                topics: []
+                topics:
+                    []
 
             });
 
 
-            document
-                .getElementById(
-                    'modal-subject-name'
-                )
-                .value = '';
+            document.getElementById(
+                'modal-subject-name'
+            ).value = '';
 
 
             closeAddSubjectModal();
@@ -2693,6 +3324,10 @@
             saveData();
         }
 
+
+        /* =========================================================
+           DELETE SUBJECT
+        ========================================================= */
 
         function deleteSubject(
             subjectId,
@@ -2714,18 +3349,47 @@
                             s.id !== subjectId
                     );
 
+
                 saveData();
             }
         }
 
 
+        /* =========================================================
+           ADD SCHEDULE MODAL
+        ========================================================= */
+
         function openAddScheduleModal() {
+
+            populateTimeSelectors();
+
+
+            const today =
+                getTodayTurkishDay();
+
+
+            document.getElementById(
+                'modal-schedule-day'
+            ).value =
+                today;
+
+
+            document
+                .getElementById(
+                    'time-warning'
+                )
+                .classList.add(
+                    'hidden'
+                );
+
 
             document
                 .getElementById(
                     'modal-add-schedule'
                 )
-                .classList.remove('hidden');
+                .classList.remove(
+                    'hidden'
+                );
         }
 
 
@@ -2735,9 +3399,15 @@
                 .getElementById(
                     'modal-add-schedule'
                 )
-                .classList.add('hidden');
+                .classList.add(
+                    'hidden'
+                );
         }
 
+
+        /* =========================================================
+           SAVE SCHEDULE
+        ========================================================= */
 
         function saveNewScheduleTask() {
 
@@ -2750,16 +3420,6 @@
                     .trim();
 
 
-            const time =
-                document
-                    .getElementById(
-                        'modal-schedule-time'
-                    )
-                    .value
-                    .trim() ||
-                '09:00 - 10:00';
-
-
             const day =
                 document
                     .getElementById(
@@ -2768,7 +3428,59 @@
                     .value;
 
 
-            if (!title) return;
+            const startTime =
+                document
+                    .getElementById(
+                        'modal-schedule-start'
+                    )
+                    .value;
+
+
+            const endTime =
+                document
+                    .getElementById(
+                        'modal-schedule-end'
+                    )
+                    .value;
+
+
+            const warning =
+                document.getElementById(
+                    'time-warning'
+                );
+
+
+            if (!title) {
+
+                alert(
+                    'Lütfen görev adını yaz.'
+                );
+
+                return;
+            }
+
+
+            /*
+             * Bitiş saati başlangıçtan
+             * sonra olmak zorunda.
+             */
+
+            if (
+                timeToMinutes(endTime) <=
+                timeToMinutes(startTime)
+            ) {
+
+                warning.classList.remove(
+                    'hidden'
+                );
+
+                return;
+            }
+
+
+            warning.classList.add(
+                'hidden'
+            );
 
 
             schedules.push({
@@ -2780,8 +3492,14 @@
                 title:
                     title,
 
+                startTime:
+                    startTime,
+
+                endTime:
+                    endTime,
+
                 time:
-                    time,
+                    `${startTime} - ${endTime}`,
 
                 day:
                     day,
@@ -2791,18 +3509,9 @@
             });
 
 
-            document
-                .getElementById(
-                    'modal-schedule-title'
-                )
-                .value = '';
-
-
-            document
-                .getElementById(
-                    'modal-schedule-time'
-                )
-                .value = '';
+            document.getElementById(
+                'modal-schedule-title'
+            ).value = '';
 
 
             closeAddScheduleModal();
@@ -2810,40 +3519,136 @@
             saveData();
 
             renderDailySchedules();
+
+            renderWeeklyGrid();
+
+            /*
+             * Yeni görev eklenince
+             * haftalık plana geçiyoruz.
+             */
+
+            switchScheduleSubTab(
+                'weekly'
+            );
         }
 
 
-        // ================= START =================
+        /* =========================================================
+           ENTER KEY SUPPORT
+        ========================================================= */
 
-        window.onload = function () {
+        document.addEventListener(
+            'keydown',
+            function(event) {
+
+                if (
+                    event.key === 'Enter'
+                ) {
+
+                    const topicInput =
+                        document.getElementById(
+                            'new-topic-input'
+                        );
+
+                    const taskInput =
+                        document.getElementById(
+                            'new-task-input'
+                        );
+
+
+                    if (
+                        document.activeElement ===
+                        topicInput
+                    ) {
+
+                        addNewTopic();
+
+                    } else if (
+                        document.activeElement ===
+                        taskInput
+                    ) {
+
+                        addNewTaskToTopic();
+                    }
+                }
+            }
+        );
+
+
+        /* =========================================================
+           INITIALIZATION
+        ========================================================= */
+
+        window.onload = function() {
+
+            /*
+             * Eski localStorage programlarını
+             * yeni saat sistemine uyarla.
+             */
+
+            schedules =
+                schedules.map(
+                    normalizeSchedule
+                );
+
+
+            /*
+             * Saat seçeneklerini hazırla.
+             */
+
+            populateTimeSelectors();
+
+
+            /*
+             * Bugünün programını göster.
+             */
+
+            renderDailySchedules();
+
+
+            /*
+             * Haftalık planı hazırla.
+             */
+
+            renderWeeklyGrid();
+
+
+            /*
+             * Tüm arayüzü güncelle.
+             */
 
             updateAllUI();
-
         };
 
 
-        // ================= SERVICE WORKER =================
+        /* =========================================================
+           SERVICE WORKER
+        ========================================================= */
 
-        if ('serviceWorker' in navigator) {
+        if (
+            'serviceWorker' in navigator
+        ) {
 
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker
+                .register('sw.js')
+                .then(() => {
 
-                .then(() =>
                     console.log(
                         'Service Worker başarıyla kaydedildi!'
-                    )
-                )
+                    );
 
-                .catch(error =>
+                })
+                .catch(error => {
+
                     console.log(
                         'Kayıt başarısız:',
                         error
-                    )
-                );
+                    );
+
+                });
         }
 
     </script>
 
 </body>
 </html>
-```
