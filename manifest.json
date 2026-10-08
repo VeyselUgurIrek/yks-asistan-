@@ -1,7 +1,7 @@
 {
   "name": "YKS Asistanı Pro",
   "short_name": "YKS Asistanı",
-  "start_url": "/",
+  "start_url": "/yks-asistan-/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
